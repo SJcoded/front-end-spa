@@ -16,6 +16,11 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		const name = e.currentTarget.name.value;
+		const email = e.currentTarget.email.value;
+		const confirmEmail = e.currentTarget.confirmEmail.value;
+
 		setStatus("loading");
 		setTimeout(() => {
 			if (status === "loading") {
@@ -27,12 +32,13 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 		}, 10000);
 
 		// Email mismatch error
-		if (
-			e.currentTarget.email.value !== e.currentTarget.confirmEmail.value
-		) {
+		if (email !== confirmEmail) {
 			setStatus("error");
 			setErrorMessage("Email mismatch");
 			console.error("email mismatch");
+		} else if (name.length < 3) {
+			setStatus("error");
+			setErrorMessage("Name must be at least 3 characters");
 		} else {
 			fetch(
 				"https://us-central1-blinkapp-684c1.cloudfunctions.net/fakeAuth",
@@ -42,8 +48,8 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
-						name: e.currentTarget.name.value,
-						email: e.currentTarget.email.value,
+						name,
+						email,
 					}),
 				},
 			)
@@ -114,8 +120,13 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 					</div>
 					{status === "success" ? (
 						<>
-							<p>{displayedContent.successMessage}</p>
-							<button onClick={() => setShow(false)}>
+							<p className={styles.successMessage}>
+								{displayedContent.successMessage}
+							</p>
+							<button
+								className={styles.successButton}
+								onClick={() => setShow(false)}
+							>
 								{displayedContent.buttonText}
 							</button>
 						</>

@@ -55,4 +55,12 @@
 	.errorMessage {
 		color: var(--danger);
 	}
+
+	.successMessage {
+		margin-top: 2.5rem;
+	}
+
+	.successButton {
+		border-color: var(--success);
+	}
 }
