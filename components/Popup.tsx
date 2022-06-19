@@ -55,11 +55,9 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 			)
 				.then((res) => {
 					if (res.status === 200) {
-						console.log("success");
 						setStatus("success");
 					} else if (res.status === 400) {
 						setStatus("error");
-						console.log(res);
 						if (res.statusText) {
 							setErrorMessage(res.statusText);
 						} else {
@@ -72,7 +70,7 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 				.catch((err) => {
 					setStatus("error");
 					setErrorMessage(err.message);
-					console.log(err);
+					console.error(err);
 				});
 		}
 	};
