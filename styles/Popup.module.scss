@@ -10,6 +10,9 @@
 	background-color: white;
 	min-width: 400px;
 
+	transform: scale(1);
+	transition: all 0.2s ease-in;
+
 	.popupHeader {
 		display: flex;
 		flex-direction: column;
@@ -20,6 +23,10 @@
 			height: 2px;
 			background-color: var(--neutral-200);
 		}
+	}
+
+	button {
+		margin-top: 1.5rem;
 	}
 
 	form {
@@ -43,5 +50,9 @@
 		// 	margin-top: 24px;
 		// 	width: 100%;
 		// }
+	}
+
+	.errorMessage {
+		color: var(--danger);
 	}
 }

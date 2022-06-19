@@ -9,6 +9,7 @@ $bg: #151515;
 	--neutral-200: #c9c9c9;
 	--neutral-300: #4d4d4d;
 	--bg: #151515;
+	--danger: #ff7c7c;
 }
 
 @font-face {
@@ -87,6 +88,18 @@ input {
 	&:active {
 		transform: scale(95%);
 		background-color: transparent;
+	}
+
+	&:focus {
+		transform: none;
+		transition: none;
+	}
+
+	&:disabled {
+		color: var(--neutral-300);
+		background-color: var(--neutral-200);
+		transform: none;
+		transition: none;
 	}
 }
 
