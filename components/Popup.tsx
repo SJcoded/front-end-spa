@@ -17,10 +17,11 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const name = e.currentTarget.name.value;
+		const name = e.currentTarget.fullName.value;
 		const email = e.currentTarget.email.value;
 		const confirmEmail = e.currentTarget.confirmEmail.value;
 
+		console.log(name);
 		setStatus("loading");
 		setTimeout(() => {
 			if (status === "loading") {
@@ -133,8 +134,8 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 							<input
 								placeholder="Full name"
 								type="text"
-								id="name"
-								name="name"
+								id="fullName"
+								name="fullName"
 								required
 							/>
 							<input
