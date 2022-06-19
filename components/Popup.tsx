@@ -21,7 +21,6 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 		const email = e.currentTarget.email.value;
 		const confirmEmail = e.currentTarget.confirmEmail.value;
 
-		console.log(name);
 		setStatus("loading");
 		setTimeout(() => {
 			if (status === "loading") {
@@ -37,7 +36,9 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 			setStatus("error");
 			setErrorMessage("Email mismatch");
 			console.error("email mismatch");
-		} else if (name.length < 3) {
+		}
+		// Name must have at least 3 characters
+		else if (name.length < 3) {
 			setStatus("error");
 			setErrorMessage("Name must be at least 3 characters");
 		} else {
