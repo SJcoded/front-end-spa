@@ -18,8 +18,12 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 		e.preventDefault();
 		setStatus("loading");
 		setTimeout(() => {
-			setStatus("error");
-			setErrorMessage("Something went wrong, ");
+			if (status === "loading") {
+				setStatus("error");
+				setErrorMessage(
+					"Submission timed out, please try again later.",
+				);
+			}
 		}, 10000);
 
 		// Email mismatch error
@@ -49,7 +53,14 @@ const Popup = ({ show, setShow, content }: PopupProps) => {
 						setStatus("success");
 					} else if (res.status === 400) {
 						setStatus("error");
-						console.log("error");
+						console.log(res);
+						if (res.statusText) {
+							setErrorMessage(res.statusText);
+						} else {
+							setErrorMessage(
+								"Something went wrong, please try again.",
+							);
+						}
 					}
 				})
 				.catch((err) => {
